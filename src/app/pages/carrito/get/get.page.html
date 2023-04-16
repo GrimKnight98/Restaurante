@@ -1,0 +1,80 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Carrito</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <ion-list>
+    <ion-list-header>
+      <ion-label><h1>Productos</h1></ion-label>
+      <ion-button color="danger" (click)="limpiarCarrito()">
+        <ion-icon slot="start" name="close-outline"></ion-icon>
+        Limpiar Carrito</ion-button>
+    </ion-list-header>
+
+    <ion-list>
+      <ion-item-sliding style="opacity: 0" *ngFor="let item of items" #templateList>
+        <ion-item>
+
+          <ion-thumbnail slot="start">
+            <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+          </ion-thumbnail>
+
+          <ion-label>
+            <h2>{{item.nombre}}</h2>
+            <p>{{item.precio | currency : 'MXN'}}</p>
+            <P>Cantidad: {{item.cantidad}}</P>
+          </ion-label>
+
+          <ion-label slot="end">{{item.total | currency : 'MXN'}}</ion-label>
+
+        </ion-item>
+
+        <ion-item-options side="end">
+          <ion-item-option color="danger" (click)="borrarItemCarrito(item.row_id)">
+            <ion-icon slot="top" name="trash"></ion-icon>
+            Quitar
+          </ion-item-option>
+          <ion-item-option color="primary">
+            <ion-icon slot="top" name="share"></ion-icon>
+            Compartir
+          </ion-item-option>
+        </ion-item-options>
+    
+        <ion-item-options side="start">
+          <ion-item-option >
+            <ion-icon slot="top" name="Information-circle"></ion-icon>
+            Info</ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+
+  </ion-list>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>Total a Pagar</ion-card-subtitle>
+      <ion-card-title>Total: {{tamount|currency:'MXN'}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label>Cupones</ion-label>
+        <ion-input></ion-input>
+        <ion-button>
+          <ion-icon slot="icon-only" name="add"></ion-icon>
+        </ion-button>
+      </ion-item>
+
+      <ion-button expand="block" fill="solid" shape="round" color="primary">
+        Pagar Pedido
+      </ion-button>
+    
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

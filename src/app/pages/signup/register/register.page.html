@@ -1,0 +1,69 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Crear una cuenta</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <!-- NOMBRE -->
+  <ion-item lines="full">
+    <ion-label position="floating">Nombre(s)</ion-label>
+    <ion-input [(ngModel)]="nombre" type="text" placeholder="Nombre..." required></ion-input>
+  </ion-item>
+
+  <!-- APELLIDOS -->
+  <ion-item lines="full">
+    <ion-label position="floating">Apellidos</ion-label>
+    <ion-input [(ngModel)]="apellido" type="text" placeholder="Apellidos..." required></ion-input>
+  </ion-item>
+  <!-- FECHA NACIMIENTO -->
+
+  <ion-item>
+    <ion-label>Fecha de nacimineto</ion-label>
+    <ion-input
+      value="{{ fecha_nacimiento | date: 'dd/MM/yyyy' }}"
+      id="date"
+      class="ion-text-end"
+    ></ion-input>
+    <ion-popover trigger="date" size="cover">
+      <ng-template>
+        <ion-datetime
+          presentation="date"
+          [(ngModel)]="fecha_nacimiento"
+        ></ion-datetime>
+      </ng-template>
+    </ion-popover>
+  </ion-item>
+
+  <!-- GENERO -->
+  <ion-item>
+    <ion-label>Selecciona tu genero</ion-label>
+    <ion-select [(ngModel)]="genero" interface="action-sheet" placeholder="Select fruit" cancelText="Cancel Choice">
+      <ion-select-option value="H"> <ion-icon slot="start" name="male-outline"></ion-icon> Hombre</ion-select-option>
+      <ion-select-option value="M"> <ion-icon slot="start" name="female-outline"></ion-icon> Mujer</ion-select-option>
+      <ion-select-option value="NB"> <ion-icon name="radio-button-on-outline"></ion-icon> No Binario</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <!-- CORREO -->
+  <ion-item lines="full">
+    <ion-label position="floating">Email</ion-label>
+    <ion-input [(ngModel)]="correo" type="text" required></ion-input>
+  </ion-item>
+
+  <!-- CONTRASEÑA -->
+  <ion-item lines="full">
+    <ion-label position="floating">Password</ion-label>
+    <ion-input [(ngModel)]="contrasena" type="password" required></ion-input>
+  </ion-item>
+
+  <!-- BOTON REGISTRO -->
+  <ion-row>
+    <ion-col>
+      <ion-button (click)="showLoading()" type="submit" color="primary" expand="block">Sign Up</ion-button>
+    </ion-col>
+  </ion-row>
+</ion-content>

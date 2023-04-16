@@ -1,0 +1,80 @@
+<ion-header [translucent]="true"*ngFor="let promo of promocion">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-buttons slot="start">
+        <ion-back-button></ion-back-button>
+      </ion-buttons>
+    </ion-buttons>
+    <ion-title >{{ promo.nombre }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense" *ngFor="let promo of promocion">
+    <ion-toolbar>
+      <ion-title size="large" >{{ promo.nombre }}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-card *ngFor="let promo of promocion" class="ion-no-padding">
+    <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
+    <ion-card-header>
+      <ion-card-subtitle>{{promo.vigencia | date:'shortDate'}}</ion-card-subtitle>
+      <ion-card-title>{{promo.nombre}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      
+      <ion-list>
+        <ion-item>
+          <ion-icon slot="start" name="document-text-outline"></ion-icon>
+          <ion-label>
+            <h3>Descripcion</h3>
+            <p>{{promo.descripcion}}</p>
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-icon slot="start" name="list-outline"></ion-icon>
+          <ion-label>
+            <h3>Bases</h3>
+            <p *ngIf="promo.bases == null; else elseBlock">Aun NO hay bases registrada</p>
+            <ng-template #elseBlock>{{promo.base}}</ng-template>
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-icon slot="start" name="calendar-outline"></ion-icon>
+          <ion-label>
+            <h3>vigencia: </h3>
+            <p>{{promo.vigencia | date:'medium'}}</p>
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-icon slot="start" name="information-circle-outline"></ion-icon>
+          <ion-label>
+            <h3>Estatus: </h3>
+            <p>Promocion Vigente</p>
+            <ng-template #elseBlock>Promocion Vencio</ng-template>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+      
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngFor="let cupon of cupones" class="ion-no-padding">
+    <ion-card-header>
+      <ion-card-subtitle>A continuacion se muestran los cupones adjuntos</ion-card-subtitle>
+      <ion-card-title>Cupones</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label>Cupones</ion-label>
+        <ion-input value="{{cupon.codigo}}"></ion-input>
+        <ion-button (click)="copiarCupon(cupon.codigo)">
+          <ion-icon slot="icon-only" name="clipboard-outline"></ion-icon>
+        </ion-button>
+      </ion-item>
+    
+    </ion-card-content>
+  </ion-card>
+  
+</ion-content>
