@@ -18,6 +18,17 @@ export class HomePage implements OnInit {
   credentials:any;
   email : string = '';
   passwd: string = '';
+  slidesOptions = {
+    initialSlide: 0,
+    direction: 'horizontal',
+    speed: 300,
+    //effect: cube,
+    spaceBetween: 8,
+    slidesPerView: 1,
+    freeMode: true,
+    loop: true,
+    autoplay:true
+  };
 
   constructor(private http:HttpClient, 
               private promociones:PromocionesService,
